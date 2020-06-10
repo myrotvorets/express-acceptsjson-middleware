@@ -21,4 +21,4 @@ It is considered that the client is willing to accept JSON if at least one of th
   * `Accept` header contains `*/*` or `*.json`;
   * `Accept` header contains `application/*` or `application/json`.
 
-The actual check is performed by [Request.accepts](https://expressjs.com/en/4x/api.html#req.accepts).
+The actual check is performed by [Request.accepts()](https://expressjs.com/en/4x/api.html#req.accepts).

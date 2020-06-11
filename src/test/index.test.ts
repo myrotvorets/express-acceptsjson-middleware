@@ -23,6 +23,7 @@ describe('Middleware', (): void => {
         ['application/json', true],
         ['application/x-json', false],
         ['*/*', true],
+        ['*/json', true],
         ['text/*', false],
         ['text/json', false],
         ['text/x-json', false],

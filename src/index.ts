@@ -1,7 +1,9 @@
 import type { NextFunction, Request, RequestHandler, Response } from 'express';
 
 const payload = {
+    success: false,
     status: 406,
+    code: 'SHOULD_ACCEPT_JSON',
     message: 'Not acceptable',
 };
 

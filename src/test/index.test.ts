@@ -3,14 +3,12 @@ import express, { Request, Response, NextFunction } from 'express';
 import middleware from '..';
 
 function buildServer(): express.Application {
-    const server = express();
-    server.use(middleware());
-    server.use((req: Request, res: Response): unknown => res.json({ status: 200 }));
+    const app = express();
+    app.use(middleware());
+    app.use((req: Request, res: Response): unknown => res.json({ status: 200 }));
     // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
-    server.use((err: any, req: Request, res: Response, next: NextFunction): unknown =>
-        res.status(err.status).json(err),
-    );
-    return server;
+    app.use((err: any, req: Request, res: Response, next: NextFunction): unknown => res.status(err.status).json(err));
+    return app;
 }
 
 const server = buildServer();
@@ -27,6 +25,7 @@ describe('Middleware', (): void => {
         ['text/*', false],
         ['text/json', false],
         ['text/x-json', false],
+        ['application/vnd.acme.account+json', false],
     ])(
         'should handle case %s correctly',
         (accepts: string | null, ok: boolean): Promise<unknown> => {

@@ -24,6 +24,7 @@ jobs:
 
     - name: Install dependencies and test
       run: npm cit
+      env:
         NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
     - name: Build

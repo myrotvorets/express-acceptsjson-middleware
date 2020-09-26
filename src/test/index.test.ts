@@ -1,13 +1,19 @@
 import request from 'supertest';
-import express, { Request, Response, NextFunction } from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import middleware from '..';
+
+interface IStatus {
+    status: number;
+}
 
 function buildServer(): express.Application {
     const app = express();
     app.use(middleware());
     app.use((req: Request, res: Response): unknown => res.json({ status: 200 }));
     // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
-    app.use((err: any, req: Request, res: Response, next: NextFunction): unknown => res.status(err.status).json(err));
+    app.use((err: any, req: Request, res: Response, next: NextFunction): unknown =>
+        res.status((err as IStatus).status).json(err),
+    );
     return app;
 }
 

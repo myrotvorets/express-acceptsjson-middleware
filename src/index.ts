@@ -8,7 +8,7 @@ const payload = {
 };
 
 export default function (): RequestHandler {
-    return function (req: Request, res: Response, next: NextFunction): void {
+    return function acceptsJsonMiddleware(req: Request, res: Response, next: NextFunction): void {
         const p = !req.headers.accept || req.accepts('json') ? null : payload;
         next(p);
     };

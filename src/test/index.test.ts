@@ -8,6 +8,7 @@ interface IStatus {
 
 function buildServer(): express.Application {
     const app = express();
+    app.disable('x-powered-by');
     app.use(middleware());
     app.use((req: Request, res: Response): unknown => res.json({ status: 200 }));
     // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any

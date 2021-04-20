@@ -48,5 +48,8 @@
   "bugs": {
     "url": "https://github.com/myrotvorets/express-acceptsjson-middleware/issues"
   },
-  "homepage": "https://github.com/myrotvorets/express-acceptsjson-middleware#readme"
+  "homepage": "https://github.com/myrotvorets/express-acceptsjson-middleware#readme",
+  "publishConfig": {
+    "access": "public"
+  }
 }

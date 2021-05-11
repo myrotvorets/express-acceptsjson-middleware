@@ -33,15 +33,12 @@ describe('Middleware', (): void => {
         ['text/json', false],
         ['text/x-json', false],
         ['application/vnd.acme.account+json', false],
-    ])(
-        'should handle case %s correctly',
-        (accepts: string | null, ok: boolean): Promise<unknown> => {
-            let req = request(server).get('/');
-            if (accepts !== null) {
-                req = req.set('Accept', accepts);
-            }
+    ])('should handle case %s correctly', (accepts: string | null, ok: boolean): Promise<unknown> => {
+        let req = request(server).get('/');
+        if (accepts !== null) {
+            req = req.set('Accept', accepts);
+        }
 
-            return req.expect(ok ? 200 : 406);
-        },
-    );
+        return req.expect(ok ? 200 : 406);
+    });
 });

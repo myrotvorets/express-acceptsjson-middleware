@@ -1,15 +1,15 @@
 # express-acceptsjson-middleware
 
-Express.js middleware to check whether the client is willing to accept JSON response
+Express.js middleware to check whether the client is willing to accept JSON response.
 
 ## Usage
 
 ```typescript
-import { Request, Response, Router } from 'express';
-import acceptsJsonCheckMiddleware from '@myrotvorets/express-acceptsjson-middleware';
+import { type Request, type Response, Router } from 'express';
+import { acceptsJsonMiddleware } from '@myrotvorets/express-acceptsjson-middleware';
 
 const router = Router();
-router.get('/some-path', acceptsJsonCheckMiddleware(), otherHandler);
+router.get('/some-path', acceptsJsonMiddleware, otherHandler);
 ```
 
 ## What it Does

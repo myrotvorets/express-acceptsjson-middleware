@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/assertions-in-tests */
 import request from 'supertest';
 import express, { Application, NextFunction, Request, Response } from 'express';
 import { acceptsJsonMiddleware } from '../src/index.mjs';
@@ -8,6 +9,7 @@ interface IStatus {
 
 function buildServer(): Application {
     const app = express();
+    app.disable('x-powered-by');
     return app.use(
         acceptsJsonMiddleware,
         (_req: Request, res: Response): unknown => res.json({ status: 200 }),

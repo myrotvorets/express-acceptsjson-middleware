@@ -1,4 +1,5 @@
 /* eslint-disable sonarjs/assertions-in-tests */
+import { describe, it } from 'node:test';
 import request from 'supertest';
 import express, { Application, NextFunction, Request, Response } from 'express';
 import { acceptsJsonMiddleware } from '../src/index.mjs';
@@ -20,30 +21,28 @@ function buildServer(): Application {
 
 const server = buildServer();
 
-describe('acceptsJsonMiddleware', function (): void {
-    // eslint-disable-next-line mocha/no-setup-in-describe
-    (
-        [
-            [null, true],
-            ['text/html', false],
-            ['application/*', true],
-            ['application/json', true],
-            ['application/x-json', false],
-            ['*/*', true],
-            ['*/json', true],
-            ['text/*', false],
-            ['text/json', false],
-            ['text/x-json', false],
-            ['application/vnd.acme.account+json', false],
-        ] as const
-    ).forEach(([accepts, ok]) =>
-        it(`should handle case ${accepts} correctly`, function () {
+await describe('acceptsJsonMiddleware', async () => {
+    for (const [accepts, ok] of [
+        [null, true],
+        ['text/html', false],
+        ['application/*', true],
+        ['application/json', true],
+        ['application/x-json', false],
+        ['*/*', true],
+        ['*/json', true],
+        ['text/*', false],
+        ['text/json', false],
+        ['text/x-json', false],
+        ['application/vnd.acme.account+json', false],
+    ] as const) {
+        // eslint-disable-next-line no-await-in-loop
+        await it(`should handle case ${accepts} correctly`, async () => {
             let req = request(server).get('/');
             if (accepts !== null) {
                 req = req.set('Accept', accepts);
             }
 
-            return req.expect(ok ? 200 : 406);
-        }),
-    );
+            await req.expect(ok ? 200 : 406);
+        });
+    }
 });

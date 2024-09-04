@@ -11,7 +11,7 @@
     "typecheck": "tsc --noEmit",
     "test": "node --import=./loader.mjs test-runner.mts",
     "test:coverage": "c8 npm test",
-    "prepare": "npm run build"
+    "prepack": "npm run build"
   },
   "files": [
     "dist/src/index.d.mts",

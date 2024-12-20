@@ -1,6 +1,6 @@
 {
   "name": "@myrotvorets/express-acceptsjson-middleware",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Middleware to check whether the client is willing to accept JSON response",
   "type": "module",
   "exports": "./dist/src/index.mjs",
